@@ -3,7 +3,6 @@ import java.lang.Exception
 
 fun main(args: Array<String>) {
     val (fileName, newFileName, parsersString) = getArgs(args)
-    println(parsersString)
     val parsers = getParsers(parsersString)
     with(File(fileName)) {
         deleteOnExit()
@@ -24,10 +23,9 @@ private fun getArgs(args: Array<String>): List<String> {
 private fun getParsers(parserString: String): Map<String, String> {
     val parsers = mutableMapOf<String, String>()
     parserString.split(",").run {
-        println(this)
         forEach {
             val (key, value) = it.split("=")
-            parsers.put(key, value)
+            parsers[key] = value
         }
     }
     return parsers
